@@ -28,9 +28,11 @@ Stable version:
 Development version:
 
 ::
-
-    Coming soon
-
+    $ git clone git@github.com:greggyNapalm/firebat-web.git; cd firebat-web
+    $ pip install -r requirements-dev.txt
+    $ cp -p firebat-web.default.cfg firebat-web.local.cfg
+    $ export FIRE_WEB_CFG=`readlink -e firebat-web.local.cfg`
+    $ ./run.py
 
 
 Screenshots

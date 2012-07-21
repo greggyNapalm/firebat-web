@@ -9,8 +9,8 @@ import flask
 from werkzeug.contrib.fixers import ProxyFix
 
 app = flask.Flask(__name__)
+app.config.from_envvar('FIRE_WEB_CFG')
 
-app.secret_key = 'change-me'
 #app.config.from_object('settings')
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
@@ -18,7 +18,6 @@ app.wsgi_app = ProxyFix(app.wsgi_app)
 # Register different apps
 #app.register_blueprint(111, url_prefix='/auth')
 
-app.wsgi_app = ProxyFix(app.wsgi_app)
 
 @app.route('/', methods=['GET'])
 def index():
