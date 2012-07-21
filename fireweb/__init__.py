@@ -1,22 +1,34 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-import flask
 
-# load the middleware from werkzeug
-# This middleware can be applied to add HTTP proxy support to an application
-# that was not designed with HTTP proxies in mind.
-# It sets EMOTE_ADDRfrom werkzeug.contrib.fixers import ProxyFix
+"""
+firebat-web.app
+~~~~~~~~~~~~~~~
+
+Describes WSGI application.
+"""
+
+import os
+
+import flask
+from flask import send_from_directory
 from werkzeug.contrib.fixers import ProxyFix
+
+from example import example
 
 app = flask.Flask(__name__)
 app.config.from_envvar('FIRE_WEB_CFG')
-
-#app.config.from_object('settings')
-app.wsgi_app = ProxyFix(app.wsgi_app)
-
+app.wsgi_app = ProxyFix(app.wsgi_app)  # Fix for old proxyes
 
 # Register different apps
-#app.register_blueprint(111, url_prefix='/auth')
+app.register_blueprint(example, url_prefix='/example')
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static', 'img'),
+                               'favicon.ico',
+                               mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/', methods=['GET'])
