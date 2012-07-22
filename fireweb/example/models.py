@@ -8,9 +8,10 @@ Objects mapping for blueprint
 """
 
 from sqlalchemy import Column, Integer, String
-from fireweb.database import Base
+from .. __init__ import db
 
-class User(Base):
+
+class User(db.Model):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String(50), unique=True)

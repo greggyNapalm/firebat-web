@@ -12,22 +12,19 @@ import os
 
 import flask
 from flask import send_from_directory
+from flask.ext.sqlalchemy import SQLAlchemy
 from werkzeug.contrib.fixers import ProxyFix
 
 from example import example
-from database import db_session
 
 app = flask.Flask(__name__)
 app.config.from_envvar('FIRE_WEB_CFG')
 app.wsgi_app = ProxyFix(app.wsgi_app)  # Fix for old proxyes
+db = SQLAlchemy(app)
 
 # Register different apps
 app.register_blueprint(example, url_prefix='/example')
 
-# Common for all app tuning
-@app.teardown_request
-def shutdown_session(exception=None):
-    db_session.remove()
 
 @app.route('/favicon.ico')
 def favicon():

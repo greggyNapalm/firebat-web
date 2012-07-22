@@ -14,7 +14,6 @@ from flask import request, jsonify, url_for, abort, redirect, flash
 from flask import render_template as flask_render_template
 
 from . import example
-from fireweb.database import db_session
 from .models import User
 
 
