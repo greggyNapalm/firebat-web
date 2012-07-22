@@ -44,7 +44,7 @@ Coming soon
 Issues
 ------
 
-Find a bug? Want a feature? Submit an `<https://github.com/greggyNapalm/firebat-web/issues>`_. Patches welcome!
+Find a bug? Want a feature? Submit an `here <https://github.com/greggyNapalm/firebat-web/issues>`_. Patches welcome!
 
 License
 -------
